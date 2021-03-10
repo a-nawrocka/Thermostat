@@ -5,13 +5,19 @@ describe("Thermostat", function() {
     thermostat = new Thermostat();
   });
 
-  it("should have a starting temperature 20 degrees", function() {
+  it("should have a starting default temperature of 20 degrees", function() {
     expect(thermostat.temperature).toEqual(20);
   });
 
   it("should have a minimum temperature of 10 degrees", function() {
     expect(thermostat.MINIMUM_TEMPERATURE).toEqual(10);
   });
+
+  it("can be reset to default temperature", function(){
+    thermostat.up();
+    thermostat.resetTemp();
+    expect(thermostat.temperature).toEqual(20);
+  } )
 
   describe("up", function() {
     it("increases temperature", function(){
@@ -52,7 +58,28 @@ describe("Thermostat", function() {
       expect(thermostat.isPowerSaving).toEqual(true)
     })
   })
+
+  describe("when powersabing mode is on ", function() {
+    it("has a maximum temperature of 25", function() {
+      thermostat.temperature = 25      
+      expect( function() { thermostat.up() }).toThrow("Maximum temperature raised");
+    })
+  })
+
+  describe("current energy usage", function() {
+    it("displays a low-usage", function() {
+      thermostat.temperature = 17
+      expect(thermostat.energyUsage()).toEqual("low-usage");
+      thermostat.temperature = 21
+      expect(thermostat.energyUsage()).toEqual("medium-usage");
+      thermostat.temperature = 27
+      expect(thermostat.energyUsage()).toEqual("high-usage");
+    })
+
+  })
+
 });
+
 
 
 

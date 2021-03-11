@@ -6,12 +6,11 @@
       <script src="src/utils.js"></script>
       <script src="src/interface.js"></script>
       <link rel="stylesheet" href="styles/styles.css">
-
-    </head>
+     </head>
     <body>
       <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <section>
-        <h1 id="temperature"></h1>
+        <h1><span id="temperature"></span> °C</h1>
         <p>
           <button id="temperature-up">+</button>
           <button id="temperature-down">-</button>
@@ -25,5 +24,14 @@
         alert('Welcome in thermostat!');
         alert('The best thermostat!');
       </script>
+      <section>
+        <h3>Current temperature: <span id="current-temperature"></span> °C</h3>
+        <h3>Feels like: <span id="feels_like"></span> °C</h3>
+        <form id="select-city">
+          <input id="current-city" type="text" placeholder="Enter a city"></input>
+          <input type="submit"></input>
+        </form>
+      </section>
     </body>
 </html>
+
